@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen" style={{ background: "#000000" }}>
+    <main className="relative min-h-screen w-full" style={{ background: "#000000" }}>
       {/* Animated particle + grid background */}
       <ParticleBackground />
 

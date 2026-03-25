@@ -149,8 +149,8 @@ export default function TerminalPreview() {
   };
 
   return (
-    <section id="terminal" className="relative py-24 px-6" style={{ zIndex: 1 }}>
-      <div className="max-w-4xl mx-auto">
+    <section id="terminal" className="relative py-24" style={{ zIndex: 1 }}>
+      <div className="max-w-4xl px-6" style={{ margin: '0 auto' }}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

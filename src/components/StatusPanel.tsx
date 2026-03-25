@@ -67,10 +67,10 @@ export default function StatusPanel() {
   return (
     <section
       id="status"
-      className="relative py-24 px-6"
+      className="relative py-24"
       style={{ zIndex: 1 }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl px-6 overflow-hidden" style={{ margin: '0 auto' }}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

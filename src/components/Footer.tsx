@@ -5,7 +5,7 @@ import { Github, BookOpen, ExternalLink } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="relative py-16 px-6" style={{ zIndex: 1 }}>
+    <footer className="relative py-16" style={{ zIndex: 1 }}>
       {/* Top border */}
       <div
         className="absolute top-0 left-0 right-0 h-px"
@@ -14,7 +14,7 @@ export default function Footer() {
         }}
       />
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl px-6" style={{ margin: '0 auto' }}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}
           <motion.div

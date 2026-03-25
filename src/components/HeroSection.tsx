@@ -30,7 +30,7 @@ export default function HeroSection() {
         }}
       />
 
-      <div className="relative text-center px-6 max-w-5xl mx-auto" style={{ zIndex: 3 }}>
+      <div className="relative text-center px-6 max-w-5xl" style={{ zIndex: 3, margin: '0 auto' }}>
         {/* System label */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}

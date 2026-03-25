@@ -39,7 +39,7 @@ const features: Feature[] = [
 
 export default function FeaturesSection() {
   return (
-    <section id="features" className="relative py-24 px-6" style={{ zIndex: 1 }}>
+    <section id="features" className="relative py-24" style={{ zIndex: 1 }}>
       {/* Background separator */}
       <div
         className="absolute inset-0"
@@ -49,7 +49,7 @@ export default function FeaturesSection() {
         }}
       />
 
-      <div className="max-w-6xl mx-auto relative">
+      <div className="max-w-6xl px-6 relative" style={{ margin: '0 auto' }}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
