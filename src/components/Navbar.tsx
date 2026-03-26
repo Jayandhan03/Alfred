@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { logout } from "@/lib/auth";
 
 const navLinks = [
   { href: "#hero", label: "HOME" },
@@ -13,6 +15,12 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -78,10 +86,10 @@ export default function Navbar() {
               {link.label}
             </motion.a>
           ))}
-          <motion.a
-            href="#terminal"
+          <motion.button
+            onClick={handleLogout}
             whileHover={{
-              boxShadow: "0 0 20px rgba(0, 191, 255, 0.5)",
+              boxShadow: "0 0 15px rgba(255, 68, 68, 0.4)",
               scale: 1.03,
             }}
             whileTap={{ scale: 0.97 }}
@@ -89,15 +97,16 @@ export default function Navbar() {
               fontFamily: "'Orbitron', monospace",
               fontSize: "0.6rem",
               letterSpacing: "0.15em",
-              color: "#000",
-              background: "#00BFFF",
-              padding: "6px 16px",
-              textDecoration: "none",
+              color: "#FF4444",
+              background: "transparent",
+              padding: "6px 14px",
+              border: "1px solid rgba(255, 68, 68, 0.4)",
+              cursor: "pointer",
               fontWeight: 700,
             }}
           >
-            LAUNCH
-          </motion.a>
+            LOGOUT
+          </motion.button>
         </div>
 
         {/* Mobile Menu Toggle */}
