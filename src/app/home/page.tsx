@@ -6,6 +6,7 @@ import ParticleBackground from "@/components/ParticleBackground";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import StatusPanel from "@/components/StatusPanel";
+import MoodTracker from "@/components/MoodTracker";
 import FeaturesSection from "@/components/FeaturesSection";
 import TerminalPreview from "@/components/TerminalPreview";
 import Footer from "@/components/Footer";
@@ -35,6 +36,7 @@ export default function HomePage() {
       {/* Page Sections */}
       <HeroSection />
       <StatusPanel />
+      <MoodTracker />
       <FeaturesSection />
       <TerminalPreview />
       <Footer />

@@ -8,6 +8,7 @@ import { logout } from "@/lib/auth";
 const navLinks = [
   { href: "#hero", label: "HOME" },
   { href: "#status", label: "STATUS" },
+  { href: "#mood", label: "MOOD" },
   { href: "#features", label: "FEATURES" },
   { href: "#terminal", label: "TERMINAL" },
 ];
