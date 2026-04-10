@@ -37,12 +37,21 @@ const features: Feature[] = [
       "The AI analyzes recurring patterns in your life decisions, identifies blind spots, and reveals the hidden architecture of your thinking.",
     tags: ["Pattern Analysis", "Insight Engine", "Deep Learning"],
   },
+  {
+    icon: "◎",
+    title: "Focus Protocol",
+    subtitle: "DEEP WORK ENGINE",
+    description:
+      "A tactical Pomodoro-style timer with circular progress visualization. Track focus sessions, streaks, and cumulative deep work time. Built for cognitive performance.",
+    tags: ["Pomodoro", "Session Log", "Streak"],
+  },
 ];
 
 export default function FeaturesSection() {
   const router = useRouter();
   const [perfLoggingEnabled, setPerfLoggingEnabled] = useState(true);
   const [goalTrackerEnabled, setGoalTrackerEnabled] = useState(true);
+  const [focusProtocolEnabled, setFocusProtocolEnabled] = useState(true);
 
   return (
     <section id="features" className="relative py-24" style={{ zIndex: 1 }}>
@@ -574,6 +583,185 @@ export default function FeaturesSection() {
               style={{
                 borderBottom: "1px solid rgba(255, 184, 0, 0.3)",
                 borderRight: "1px solid rgba(255, 184, 0, 0.3)",
+              }}
+            />
+          </div>
+        </motion.div>
+
+        {/* Focus Protocol — Full-width toggle card */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.65 }}
+          className="mt-6"
+        >
+          <div
+            onClick={() => {
+              document.getElementById("focus-timer")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="relative flex items-center justify-between p-8 group cursor-pointer"
+            style={{
+              background: focusProtocolEnabled
+                ? "rgba(0, 191, 255, 0.05)"
+                : "rgba(13, 17, 23, 0.9)",
+              backdropFilter: "blur(16px)",
+              border: focusProtocolEnabled
+                ? "1px solid rgba(0, 191, 255, 0.4)"
+                : "1px solid rgba(0, 191, 255, 0.12)",
+              transition: "all 0.35s ease",
+              boxShadow: focusProtocolEnabled
+                ? "0 0 40px rgba(0, 191, 255, 0.08), inset 0 0 40px rgba(0, 191, 255, 0.03)"
+                : "none",
+            }}
+          >
+            {/* Top border glow */}
+            <div
+              className="absolute top-0 left-0 right-0 h-px transition-opacity duration-300"
+              style={{
+                background: "linear-gradient(90deg, transparent, #00BFFF, transparent)",
+                opacity: focusProtocolEnabled ? 1 : 0,
+              }}
+            />
+
+            {/* Left section */}
+            <div className="flex items-center gap-6">
+              <span
+                style={{
+                  fontFamily: "'Orbitron', monospace",
+                  fontSize: "2.5rem",
+                  color: focusProtocolEnabled ? "#00BFFF" : "rgba(0,191,255,0.35)",
+                  filter: focusProtocolEnabled
+                    ? "drop-shadow(0 0 14px rgba(0, 191, 255, 0.7))"
+                    : "none",
+                  transition: "all 0.35s ease",
+                  lineHeight: 1,
+                }}
+              >
+                ◎
+              </span>
+              <div>
+                <p
+                  style={{
+                    fontFamily: "'Share Tech Mono', monospace",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.25em",
+                    color: "rgba(0, 191, 255, 0.55)",
+                    textTransform: "uppercase",
+                    marginBottom: "4px",
+                  }}
+                >
+                  DEEP WORK ENGINE
+                </p>
+                <h3
+                  style={{
+                    fontFamily: "'Orbitron', monospace",
+                    fontSize: "1.05rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    color: "#ffffff",
+                  }}
+                >
+                  Focus Protocol
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontSize: "0.88rem",
+                    color: "rgba(150, 180, 200, 0.75)",
+                    marginTop: "6px",
+                  }}
+                >
+                  Tactical Pomodoro timer with circular progress ring. Track sessions, streaks & total deep work time.
+                </p>
+              </div>
+            </div>
+
+            {/* Right section — tags + toggle */}
+            <div className="flex flex-col items-end gap-4 ml-6 shrink-0">
+              <div className="flex gap-2 flex-wrap justify-end">
+                {["25 min", "Streak", "Session Log"].map((tag) => (
+                  <span
+                    key={tag}
+                    style={{
+                      fontFamily: "'Share Tech Mono', monospace",
+                      fontSize: "0.6rem",
+                      letterSpacing: "0.1em",
+                      color: focusProtocolEnabled ? "rgba(0, 191, 255, 0.85)" : "rgba(0, 191, 255, 0.4)",
+                      background: focusProtocolEnabled ? "rgba(0, 191, 255, 0.1)" : "rgba(0, 191, 255, 0.04)",
+                      border: "1px solid rgba(0, 191, 255, 0.2)",
+                      padding: "2px 8px",
+                      transition: "all 0.35s ease",
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Toggle switch */}
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setFocusProtocolEnabled(!focusProtocolEnabled);
+                }}
+                className="relative flex items-center cursor-pointer"
+                style={{ gap: "10px" }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'Share Tech Mono', monospace",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.15em",
+                    color: focusProtocolEnabled ? "#00BFFF" : "rgba(0,191,255,0.35)",
+                    transition: "color 0.3s",
+                  }}
+                >
+                  {focusProtocolEnabled ? "ACTIVE" : "INACTIVE"}
+                </span>
+                <div
+                  style={{
+                    width: "44px",
+                    height: "22px",
+                    borderRadius: "11px",
+                    background: focusProtocolEnabled
+                      ? "rgba(0, 191, 255, 0.25)"
+                      : "rgba(255,255,255,0.06)",
+                    border: focusProtocolEnabled
+                      ? "1px solid rgba(0, 191, 255, 0.6)"
+                      : "1px solid rgba(255,255,255,0.1)",
+                    position: "relative",
+                    transition: "all 0.3s ease",
+                    boxShadow: focusProtocolEnabled
+                      ? "0 0 12px rgba(0, 191, 255, 0.3)"
+                      : "none",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "3px",
+                      left: focusProtocolEnabled ? "24px" : "3px",
+                      width: "14px",
+                      height: "14px",
+                      borderRadius: "50%",
+                      background: focusProtocolEnabled ? "#00BFFF" : "rgba(255,255,255,0.3)",
+                      transition: "all 0.3s ease",
+                      boxShadow: focusProtocolEnabled
+                        ? "0 0 8px rgba(0, 191, 255, 0.8)"
+                        : "none",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom corner accent */}
+            <div
+              className="absolute bottom-0 right-0 w-8 h-8"
+              style={{
+                borderBottom: "1px solid rgba(0, 191, 255, 0.3)",
+                borderRight: "1px solid rgba(0, 191, 255, 0.3)",
               }}
             />
           </div>
