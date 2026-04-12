@@ -744,6 +744,609 @@ export default function HabitTrackerPage() {
             </div>
           </motion.div>
         )}
+
+        {/* ══════════ NEUROPLASTICITY SECTION ══════════ */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-10"
+        >
+          {/* Section Header */}
+          <div className="mb-6">
+            <p
+              style={{
+                fontFamily: "'Share Tech Mono', monospace",
+                fontSize: "0.6rem",
+                letterSpacing: "0.4em",
+                color: "rgba(0,255,178,0.55)",
+                marginBottom: "8px",
+              }}
+            >
+              ◈ THE SCIENCE BEHIND THE STREAK
+            </p>
+            <h2
+              style={{
+                fontFamily: "'Orbitron', monospace",
+                fontSize: "clamp(1.1rem, 3vw, 1.8rem)",
+                fontWeight: 900,
+                letterSpacing: "0.12em",
+                color: "#ffffff",
+                lineHeight: 1.15,
+              }}
+            >
+              NEUROPLASTICITY &amp;{" "}
+              <span
+                style={{
+                  background: "linear-gradient(135deg, #00FFB2, #BF7FFF)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                REWIRING YOUR BRAIN
+              </span>
+            </h2>
+            <div
+              style={{
+                height: "1px",
+                width: "140px",
+                background: "linear-gradient(90deg, transparent, #00FFB2, transparent)",
+                marginTop: "14px",
+              }}
+            />
+          </div>
+
+          {/* Intro Banner */}
+          <div
+            className="relative p-6 mb-6"
+            style={{
+              background: "rgba(0,255,178,0.04)",
+              border: "1px solid rgba(0,255,178,0.2)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            <div
+              className="absolute top-0 left-0 right-0 h-px"
+              style={{
+                background: "linear-gradient(90deg, transparent, #00FFB2, transparent)",
+              }}
+            />
+            <p
+              style={{
+                fontFamily: "'Rajdhani', sans-serif",
+                fontSize: "1.05rem",
+                lineHeight: 1.75,
+                color: "rgba(180,220,210,0.85)",
+              }}
+            >
+              Every habit you complete fires a specific neural pathway. Repeat it daily and
+              that pathway{" "}
+              <span style={{ color: "#00FFB2", fontWeight: 700 }}>
+                thickens, myelinates, and becomes automatic
+              </span>
+              . This is neuroplasticity — your brain physically reshaping itself around your
+              repeated actions. You are not just building habits. You are{" "}
+              <span style={{ color: "#BF7FFF", fontWeight: 700 }}>
+                sculpting a new neural architecture
+              </span>
+              .
+            </p>
+          </div>
+
+          {/* Animated Brain Schematic */}
+          <div
+            className="relative p-8 mb-6 overflow-hidden flex flex-col items-center"
+            style={{
+              background: "rgba(13,17,23,0.95)",
+              border: "1px solid rgba(0,255,178,0.12)",
+              backdropFilter: "blur(16px)",
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "'Share Tech Mono', monospace",
+                fontSize: "0.58rem",
+                letterSpacing: "0.3em",
+                color: "rgba(0,255,178,0.5)",
+                marginBottom: "24px",
+              }}
+            >
+              ◈ NEURAL PATHWAY FORMATION MODEL
+            </p>
+
+            {/* SVG Brain / Neural Network diagram */}
+            <svg
+              viewBox="0 0 520 220"
+              style={{ width: "100%", maxWidth: "520px", height: "auto" }}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Faint grid */}
+              <defs>
+                <radialGradient id="nodeGlow0" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#00FFB2" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#00FFB2" stopOpacity="0" />
+                </radialGradient>
+                <radialGradient id="nodeGlow1" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#BF7FFF" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#BF7FFF" stopOpacity="0" />
+                </radialGradient>
+                <radialGradient id="nodeGlow2" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#00BFFF" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#00BFFF" stopOpacity="0" />
+                </radialGradient>
+                <filter id="blur4">
+                  <feGaussianBlur stdDeviation="4" />
+                </filter>
+                <filter id="blur2">
+                  <feGaussianBlur stdDeviation="2" />
+                </filter>
+              </defs>
+
+              {/* Synapse glow paths */}
+              <line x1="60" y1="110" x2="180" y2="70" stroke="#00FFB244" strokeWidth="6" filter="url(#blur2)" />
+              <line x1="60" y1="110" x2="180" y2="150" stroke="#00FFB244" strokeWidth="6" filter="url(#blur2)" />
+              <line x1="180" y1="70" x2="300" y2="50" stroke="#BF7FFF44" strokeWidth="5" filter="url(#blur2)" />
+              <line x1="180" y1="70" x2="300" y2="110" stroke="#BF7FFF44" strokeWidth="5" filter="url(#blur2)" />
+              <line x1="180" y1="150" x2="300" y2="110" stroke="#00BFFF44" strokeWidth="5" filter="url(#blur2)" />
+              <line x1="180" y1="150" x2="300" y2="170" stroke="#00BFFF44" strokeWidth="5" filter="url(#blur2)" />
+              <line x1="300" y1="50" x2="420" y2="80" stroke="#00FFB244" strokeWidth="5" filter="url(#blur2)" />
+              <line x1="300" y1="110" x2="420" y2="80" stroke="#BF7FFF44" strokeWidth="5" filter="url(#blur2)" />
+              <line x1="300" y1="110" x2="420" y2="140" stroke="#00BFFF44" strokeWidth="5" filter="url(#blur2)" />
+              <line x1="300" y1="170" x2="420" y2="140" stroke="#00FFB244" strokeWidth="5" filter="url(#blur2)" />
+
+              {/* Crisp axon lines */}
+              <line x1="60" y1="110" x2="180" y2="70" stroke="#00FFB2" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.7">
+                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.6s" repeatCount="indefinite" />
+              </line>
+              <line x1="60" y1="110" x2="180" y2="150" stroke="#00FFB2" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.5">
+                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2.1s" repeatCount="indefinite" />
+              </line>
+              <line x1="180" y1="70" x2="300" y2="50" stroke="#BF7FFF" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.7">
+                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.8s" repeatCount="indefinite" />
+              </line>
+              <line x1="180" y1="70" x2="300" y2="110" stroke="#BF7FFF" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.5">
+                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2.4s" repeatCount="indefinite" />
+              </line>
+              <line x1="180" y1="150" x2="300" y2="110" stroke="#00BFFF" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.6">
+                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.4s" repeatCount="indefinite" />
+              </line>
+              <line x1="180" y1="150" x2="300" y2="170" stroke="#00BFFF" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.45">
+                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2.6s" repeatCount="indefinite" />
+              </line>
+              <line x1="300" y1="50" x2="420" y2="80" stroke="#00FFB2" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.7">
+                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.9s" repeatCount="indefinite" />
+              </line>
+              <line x1="300" y1="110" x2="420" y2="80" stroke="#BF7FFF" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.55">
+                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.5s" repeatCount="indefinite" />
+              </line>
+              <line x1="300" y1="110" x2="420" y2="140" stroke="#00BFFF" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.65">
+                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2.2s" repeatCount="indefinite" />
+              </line>
+              <line x1="300" y1="170" x2="420" y2="140" stroke="#00FFB2" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.5">
+                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.7s" repeatCount="indefinite" />
+              </line>
+
+              {/* Soma glow halos */}
+              <circle cx="60" cy="110" r="22" fill="url(#nodeGlow0)" filter="url(#blur4)" opacity="0.6">
+                <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="180" cy="70" r="18" fill="url(#nodeGlow1)" filter="url(#blur4)" opacity="0.5">
+                <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.5s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="180" cy="150" r="18" fill="url(#nodeGlow2)" filter="url(#blur4)" opacity="0.5">
+                <animate attributeName="opacity" values="0.3;0.7;0.3" dur="1.9s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="300" cy="50" r="16" fill="url(#nodeGlow1)" filter="url(#blur4)" opacity="0.45">
+                <animate attributeName="opacity" values="0.3;0.65;0.3" dur="2.2s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="300" cy="110" r="20" fill="url(#nodeGlow0)" filter="url(#blur4)" opacity="0.6">
+                <animate attributeName="opacity" values="0.4;0.8;0.4" dur="1.7s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="300" cy="170" r="14" fill="url(#nodeGlow2)" filter="url(#blur4)" opacity="0.4">
+                <animate attributeName="opacity" values="0.25;0.6;0.25" dur="2.8s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="420" cy="80" r="18" fill="url(#nodeGlow1)" filter="url(#blur4)" opacity="0.5">
+                <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.1s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="420" cy="140" r="16" fill="url(#nodeGlow0)" filter="url(#blur4)" opacity="0.45">
+                <animate attributeName="opacity" values="0.3;0.65;0.3" dur="1.6s" repeatCount="indefinite" />
+              </circle>
+
+              {/* Solid neuron somas */}
+              <circle cx="60" cy="110" r="10" fill="#0d1117" stroke="#00FFB2" strokeWidth="1.5" />
+              <circle cx="180" cy="70" r="8" fill="#0d1117" stroke="#BF7FFF" strokeWidth="1.5" />
+              <circle cx="180" cy="150" r="8" fill="#0d1117" stroke="#00BFFF" strokeWidth="1.5" />
+              <circle cx="300" cy="50" r="7" fill="#0d1117" stroke="#BF7FFF" strokeWidth="1.5" />
+              <circle cx="300" cy="110" r="9" fill="#0d1117" stroke="#00FFB2" strokeWidth="1.5" />
+              <circle cx="300" cy="170" r="6" fill="#0d1117" stroke="#00BFFF" strokeWidth="1.5" />
+              <circle cx="420" cy="80" r="8" fill="#0d1117" stroke="#BF7FFF" strokeWidth="1.5" />
+              <circle cx="420" cy="140" r="7" fill="#0d1117" stroke="#00FFB2" strokeWidth="1.5" />
+
+              {/* Travelling signal pulses */}
+              <circle r="3.5" fill="#00FFB2" opacity="0.95">
+                <animateMotion dur="1.6s" repeatCount="indefinite" path="M60,110 L180,70" />
+              </circle>
+              <circle r="3" fill="#BF7FFF" opacity="0.9">
+                <animateMotion dur="1.8s" repeatCount="indefinite" path="M180,70 L300,50" />
+              </circle>
+              <circle r="3.5" fill="#00BFFF" opacity="0.9">
+                <animateMotion dur="1.4s" repeatCount="indefinite" path="M180,150 L300,110" />
+              </circle>
+              <circle r="3" fill="#00FFB2" opacity="0.85">
+                <animateMotion dur="1.9s" repeatCount="indefinite" path="M300,110 L420,80" />
+              </circle>
+              <circle r="3" fill="#BF7FFF" opacity="0.85">
+                <animateMotion dur="2.1s" repeatCount="indefinite" path="M300,50 L420,80" />
+              </circle>
+              <circle r="2.5" fill="#00BFFF" opacity="0.8">
+                <animateMotion dur="2.2s" repeatCount="indefinite" path="M300,170 L420,140" />
+              </circle>
+
+              {/* Labels */}
+              <text x="60" y="132" textAnchor="middle" fill="#00FFB288" fontSize="7" fontFamily="monospace" letterSpacing="0.5">TRIGGER</text>
+              <text x="300" y="128" textAnchor="middle" fill="#00FFB288" fontSize="7" fontFamily="monospace" letterSpacing="0.5">HABIT LOOP</text>
+              <text x="420" y="100" textAnchor="middle" fill="#BF7FFF88" fontSize="7" fontFamily="monospace" letterSpacing="0.5">REWARD</text>
+
+              {/* Myelin sheath label */}
+              <line x1="105" y1="82" x2="148" y2="78" stroke="#FFB80066" strokeWidth="1" strokeDasharray="2 2" />
+              <text x="64" y="76" fill="#FFB80077" fontSize="6.5" fontFamily="monospace" letterSpacing="0.3">MYELIN</text>
+              <text x="60" y="84" fill="#FFB80077" fontSize="6.5" fontFamily="monospace" letterSpacing="0.3">SHEATH</text>
+            </svg>
+
+            <p
+              style={{
+                fontFamily: "'Share Tech Mono', monospace",
+                fontSize: "0.52rem",
+                letterSpacing: "0.2em",
+                color: "rgba(150,180,200,0.35)",
+                marginTop: "16px",
+                textAlign: "center",
+              }}
+            >
+              SIGNAL PROPAGATION ACROSS HABITUATED NEURAL PATHWAYS · REAL-TIME MODEL
+            </p>
+          </div>
+
+          {/* Key Neuroplasticity Principles Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            {[
+              {
+                icon: "⬡",
+                color: "#00FFB2",
+                title: "Hebbian Learning",
+                subtitle: "NEURONS THAT FIRE TOGETHER, WIRE TOGETHER",
+                body: "Each time you repeat a habit, co-active neurons strengthen their synaptic connection. After 21–66 days the pathway becomes a default neural highway, reducing cognitive load to near zero.",
+              },
+              {
+                icon: "◎",
+                color: "#BF7FFF",
+                title: "Myelination",
+                subtitle: "SPEED & EFFICIENCY UPGRADE",
+                body: "Repetition triggers oligodendrocytes to wrap axons in myelin — a fatty insulator that makes signals travel up to 100× faster. The longer your streak, the thicker the sheath, the more automatic the behavior.",
+              },
+              {
+                icon: "▣",
+                color: "#FFB800",
+                title: "Dopaminergic Reward Loop",
+                subtitle: "THE NEUROCHEMICAL ENGINE",
+                body: "Completing a habit triggers dopamine release in the basal ganglia — the brain's reward circuit. This chemical signal tags the behavior as \"worth repeating,\" compounding motivation with every successful day.",
+              },
+              {
+                icon: "◈",
+                color: "#00BFFF",
+                title: "Cortical Remapping",
+                subtitle: "STRUCTURAL BRAIN CHANGE",
+                body: "fMRI studies confirm that consistent practice literally expands cortical representation of the practiced skill. Musicians grow motor cortex; meditators grow prefrontal cortex. Your habits physically alter your brain's map.",
+              },
+            ].map((card) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                whileHover={{ y: -4, borderColor: card.color + "55" }}
+                className="relative p-6"
+                style={{
+                  background: "rgba(13,17,23,0.9)",
+                  border: `1px solid ${card.color}18`,
+                  backdropFilter: "blur(12px)",
+                  transition: "all 0.3s ease",
+                }}
+              >
+                <div
+                  className="absolute top-0 left-0 right-0 h-px opacity-40"
+                  style={{
+                    background: `linear-gradient(90deg, transparent, ${card.color}, transparent)`,
+                  }}
+                />
+                <div className="flex items-start gap-4">
+                  <span
+                    style={{
+                      fontFamily: "'Orbitron', monospace",
+                      fontSize: "1.8rem",
+                      color: card.color,
+                      filter: `drop-shadow(0 0 8px ${card.color}77)`,
+                      lineHeight: 1,
+                      flexShrink: 0,
+                    }}
+                  >
+                    {card.icon}
+                  </span>
+                  <div>
+                    <p
+                      style={{
+                        fontFamily: "'Share Tech Mono', monospace",
+                        fontSize: "0.52rem",
+                        letterSpacing: "0.2em",
+                        color: `${card.color}88`,
+                        marginBottom: "4px",
+                      }}
+                    >
+                      {card.subtitle}
+                    </p>
+                    <h3
+                      style={{
+                        fontFamily: "'Orbitron', monospace",
+                        fontSize: "0.82rem",
+                        fontWeight: 700,
+                        letterSpacing: "0.06em",
+                        color: "#ffffff",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      {card.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontFamily: "'Rajdhani', sans-serif",
+                        fontSize: "0.9rem",
+                        lineHeight: 1.65,
+                        color: "rgba(150,180,200,0.75)",
+                      }}
+                    >
+                      {card.body}
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="absolute bottom-0 right-0 w-5 h-5"
+                  style={{
+                    borderBottom: `1px solid ${card.color}33`,
+                    borderRight: `1px solid ${card.color}33`,
+                  }}
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Streak → Plasticity Timeline */}
+          <div
+            className="relative p-6 mb-6"
+            style={{
+              background: "rgba(13,17,23,0.9)",
+              border: "1px solid rgba(191,127,255,0.12)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            <div
+              className="absolute top-0 left-0 right-0 h-px"
+              style={{
+                background: "linear-gradient(90deg, transparent, #BF7FFF, transparent)",
+                opacity: 0.35,
+              }}
+            />
+            <p
+              style={{
+                fontFamily: "'Share Tech Mono', monospace",
+                fontSize: "0.58rem",
+                letterSpacing: "0.3em",
+                color: "rgba(191,127,255,0.55)",
+                marginBottom: "20px",
+              }}
+            >
+              ◈ PLASTICITY TIMELINE — WHAT HAPPENS IN YOUR BRAIN
+            </p>
+
+            <div className="flex flex-col gap-0">
+              {[
+                {
+                  days: "DAY 1–3",
+                  event: "Initial synaptic potentiation. A weak new pathway is carved.",
+                  color: "#00BFFF",
+                  pct: "8%",
+                },
+                {
+                  days: "DAY 7–10",
+                  event: "Repeated firing stabilises the synapse. Dopamine begins anchoring the loop.",
+                  color: "#00FFB2",
+                  pct: "30%",
+                },
+                {
+                  days: "DAY 21",
+                  event: "Myelination begins. The habit starts feeling noticeably easier.",
+                  color: "#BF7FFF",
+                  pct: "52%",
+                },
+                {
+                  days: "DAY 40",
+                  event: "Cortical representation expands. Basal ganglia encodes the habit as automatic routine.",
+                  color: "#FFB800",
+                  pct: "75%",
+                },
+                {
+                  days: "DAY 66+",
+                  event: "Full automaticity. The habit runs with near-zero prefrontal cost. Identity shift complete.",
+                  color: "#00FFB2",
+                  pct: "100%",
+                },
+              ].map((step, i) => (
+                <div key={step.days} className="flex items-start gap-4" style={{ marginBottom: i < 4 ? "0" : "0" }}>
+                  {/* Timeline spine */}
+                  <div className="flex flex-col items-center" style={{ width: "36px", flexShrink: 0 }}>
+                    <div
+                      style={{
+                        width: "10px",
+                        height: "10px",
+                        borderRadius: "50%",
+                        background: step.color,
+                        boxShadow: `0 0 10px ${step.color}88`,
+                        flexShrink: 0,
+                        marginTop: "4px",
+                      }}
+                    />
+                    {i < 4 && (
+                      <div
+                        style={{
+                          width: "1px",
+                          flex: 1,
+                          minHeight: "36px",
+                          background: `linear-gradient(to bottom, ${step.color}44, transparent)`,
+                          marginTop: "4px",
+                        }}
+                      />
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div style={{ paddingBottom: i < 4 ? "20px" : "0" }}>
+                    <div className="flex items-center gap-3 mb-1">
+                      <span
+                        style={{
+                          fontFamily: "'Orbitron', monospace",
+                          fontSize: "0.7rem",
+                          fontWeight: 800,
+                          color: step.color,
+                          letterSpacing: "0.1em",
+                          filter: `drop-shadow(0 0 4px ${step.color}66)`,
+                        }}
+                      >
+                        {step.days}
+                      </span>
+                      {/* Plasticity bar */}
+                      <div
+                        style={{
+                          height: "3px",
+                          width: "80px",
+                          background: "rgba(255,255,255,0.06)",
+                          borderRadius: "2px",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <div
+                          style={{
+                            height: "100%",
+                            width: step.pct,
+                            background: step.color,
+                            boxShadow: `0 0 6px ${step.color}`,
+                            transition: "width 1s ease",
+                          }}
+                        />
+                      </div>
+                      <span
+                        style={{
+                          fontFamily: "'Share Tech Mono', monospace",
+                          fontSize: "0.5rem",
+                          color: `${step.color}99`,
+                        }}
+                      >
+                        {step.pct}
+                      </span>
+                    </div>
+                    <p
+                      style={{
+                        fontFamily: "'Rajdhani', sans-serif",
+                        fontSize: "0.92rem",
+                        lineHeight: 1.55,
+                        color: "rgba(150,180,200,0.7)",
+                      }}
+                    >
+                      {step.event}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Alfred's Insight Banner */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative p-7"
+            style={{
+              background: "linear-gradient(135deg, rgba(191,127,255,0.06) 0%, rgba(0,255,178,0.04) 100%)",
+              border: "1px solid rgba(191,127,255,0.25)",
+              backdropFilter: "blur(16px)",
+            }}
+          >
+            <div
+              className="absolute top-0 left-0 right-0 h-px"
+              style={{
+                background: "linear-gradient(90deg, transparent, #BF7FFF 40%, #00FFB2 60%, transparent)",
+              }}
+            />
+            <div className="flex items-start gap-5">
+              <span
+                style={{
+                  fontFamily: "'Orbitron', monospace",
+                  fontSize: "2.2rem",
+                  background: "linear-gradient(135deg, #BF7FFF, #00FFB2)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  filter: "drop-shadow(0 0 12px rgba(191,127,255,0.5))",
+                  flexShrink: 0,
+                  lineHeight: 1,
+                }}
+              >
+                ◐
+              </span>
+              <div>
+                <p
+                  style={{
+                    fontFamily: "'Share Tech Mono', monospace",
+                    fontSize: "0.55rem",
+                    letterSpacing: "0.3em",
+                    color: "rgba(191,127,255,0.6)",
+                    marginBottom: "8px",
+                  }}
+                >
+                  ALFRED INTELLIGENCE · PLASTICITY INSIGHT
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontSize: "1.05rem",
+                    lineHeight: 1.75,
+                    color: "rgba(200,220,230,0.85)",
+                  }}
+                >
+                  "Every streak you build is a structural investment in your brain. You are
+                  not relying on willpower — you are{" "}
+                  <strong style={{ color: "#BF7FFF" }}>engineering automaticity</strong>.
+                  The goal is not discipline forever. The goal is to make the right action{" "}
+                  <strong style={{ color: "#00FFB2" }}>
+                    the path of least neural resistance
+                  </strong>
+                  . Repeat until the new you becomes the default you."
+                </p>
+              </div>
+            </div>
+            <div
+              className="absolute bottom-0 right-0 w-8 h-8"
+              style={{
+                borderBottom: "1px solid rgba(0,255,178,0.25)",
+                borderRight: "1px solid rgba(0,255,178,0.25)",
+              }}
+            />
+          </motion.div>
+        </motion.div>
+        {/* ══════════ END NEUROPLASTICITY SECTION ══════════ */}
+
       </div>
 
       {/* Add Habit Modal */}
