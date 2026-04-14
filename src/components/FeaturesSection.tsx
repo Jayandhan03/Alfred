@@ -54,6 +54,7 @@ export default function FeaturesSection() {
   const [focusProtocolEnabled, setFocusProtocolEnabled] = useState(true);
   const [journalEnabled, setJournalEnabled] = useState(true);
   const [habitTrackerEnabled, setHabitTrackerEnabled] = useState(true);
+  const [knowledgeVaultEnabled, setKnowledgeVaultEnabled] = useState(true);
 
   return (
     <section id="features" className="relative py-24" style={{ zIndex: 1 }}>
@@ -1118,6 +1119,183 @@ export default function FeaturesSection() {
               style={{
                 borderBottom: "1px solid rgba(191, 127, 255, 0.3)",
                 borderRight: "1px solid rgba(191, 127, 255, 0.3)",
+              }}
+            />
+          </div>
+        </motion.div>
+
+        {/* Knowledge Vault — Full-width toggle card */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.95 }}
+          className="mt-6"
+        >
+          <div
+            onClick={() => router.push("/knowledge-vault")}
+            className="relative flex items-center justify-between p-8 group cursor-pointer"
+            style={{
+              background: knowledgeVaultEnabled
+                ? "rgba(255, 107, 53, 0.04)"
+                : "rgba(13, 17, 23, 0.9)",
+              backdropFilter: "blur(16px)",
+              border: knowledgeVaultEnabled
+                ? "1px solid rgba(255, 107, 53, 0.35)"
+                : "1px solid rgba(0, 191, 255, 0.12)",
+              transition: "all 0.35s ease",
+              boxShadow: knowledgeVaultEnabled
+                ? "0 0 40px rgba(255, 107, 53, 0.06), inset 0 0 40px rgba(255, 107, 53, 0.02)"
+                : "none",
+            }}
+          >
+            {/* Top border glow */}
+            <div
+              className="absolute top-0 left-0 right-0 h-px transition-opacity duration-300"
+              style={{
+                background: "linear-gradient(90deg, transparent, #FF6B35, transparent)",
+                opacity: knowledgeVaultEnabled ? 1 : 0,
+              }}
+            />
+
+            {/* Left section */}
+            <div className="flex items-center gap-6">
+              <span
+                style={{
+                  fontFamily: "'Orbitron', monospace",
+                  fontSize: "2.5rem",
+                  color: knowledgeVaultEnabled ? "#FF6B35" : "rgba(255,107,53,0.3)",
+                  filter: knowledgeVaultEnabled
+                    ? "drop-shadow(0 0 14px rgba(255, 107, 53, 0.7))"
+                    : "none",
+                  transition: "all 0.35s ease",
+                  lineHeight: 1,
+                }}
+              >
+                ◆
+              </span>
+              <div>
+                <p
+                  style={{
+                    fontFamily: "'Share Tech Mono', monospace",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.25em",
+                    color: "rgba(255, 107, 53, 0.55)",
+                    textTransform: "uppercase",
+                    marginBottom: "4px",
+                  }}
+                >
+                  LEARNING INTELLIGENCE
+                </p>
+                <h3
+                  style={{
+                    fontFamily: "'Orbitron', monospace",
+                    fontSize: "1.05rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    color: "#ffffff",
+                  }}
+                >
+                  Knowledge Vault
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "'Rajdhani', sans-serif",
+                    fontSize: "0.88rem",
+                    color: "rgba(150, 180, 200, 0.75)",
+                    marginTop: "6px",
+                  }}
+                >
+                  Track books, articles, courses & research. Add notes, monitor progress & build your personal knowledge library.
+                </p>
+              </div>
+            </div>
+
+            {/* Right section — tags + toggle */}
+            <div className="flex flex-col items-end gap-4 ml-6 shrink-0">
+              <div className="flex gap-2 flex-wrap justify-end">
+                {["Books", "Articles", "Courses", "Research"].map((tag) => (
+                  <span
+                    key={tag}
+                    style={{
+                      fontFamily: "'Share Tech Mono', monospace",
+                      fontSize: "0.6rem",
+                      letterSpacing: "0.1em",
+                      color: knowledgeVaultEnabled ? "rgba(255, 107, 53, 0.85)" : "rgba(255, 107, 53, 0.35)",
+                      background: knowledgeVaultEnabled ? "rgba(255, 107, 53, 0.1)" : "rgba(255, 107, 53, 0.03)",
+                      border: "1px solid rgba(255, 107, 53, 0.2)",
+                      padding: "2px 8px",
+                      transition: "all 0.35s ease",
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Toggle switch */}
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setKnowledgeVaultEnabled(!knowledgeVaultEnabled);
+                }}
+                className="relative flex items-center cursor-pointer"
+                style={{ gap: "10px" }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'Share Tech Mono', monospace",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.15em",
+                    color: knowledgeVaultEnabled ? "#FF6B35" : "rgba(255,107,53,0.3)",
+                    transition: "color 0.3s",
+                  }}
+                >
+                  {knowledgeVaultEnabled ? "ACTIVE" : "INACTIVE"}
+                </span>
+                <div
+                  style={{
+                    width: "44px",
+                    height: "22px",
+                    borderRadius: "11px",
+                    background: knowledgeVaultEnabled
+                      ? "rgba(255, 107, 53, 0.22)"
+                      : "rgba(255,255,255,0.06)",
+                    border: knowledgeVaultEnabled
+                      ? "1px solid rgba(255, 107, 53, 0.6)"
+                      : "1px solid rgba(255,255,255,0.1)",
+                    position: "relative",
+                    transition: "all 0.3s ease",
+                    boxShadow: knowledgeVaultEnabled
+                      ? "0 0 12px rgba(255, 107, 53, 0.3)"
+                      : "none",
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "3px",
+                      left: knowledgeVaultEnabled ? "24px" : "3px",
+                      width: "14px",
+                      height: "14px",
+                      borderRadius: "50%",
+                      background: knowledgeVaultEnabled ? "#FF6B35" : "rgba(255,255,255,0.3)",
+                      transition: "all 0.3s ease",
+                      boxShadow: knowledgeVaultEnabled
+                        ? "0 0 8px rgba(255, 107, 53, 0.8)"
+                        : "none",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom corner accent */}
+            <div
+              className="absolute bottom-0 right-0 w-8 h-8"
+              style={{
+                borderBottom: "1px solid rgba(255, 107, 53, 0.3)",
+                borderRight: "1px solid rgba(255, 107, 53, 0.3)",
               }}
             />
           </div>
