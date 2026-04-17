@@ -29,11 +29,11 @@ function getMoodState(score: number): MoodState {
   return "CRITICAL";
 }
 
-const moodStyles: Record<MoodState, { color: string; bg: string; glow: string; label: string }> = {
-  OPTIMAL:  { color: "#00BFFF", bg: "rgba(0,191,255,0.09)",  glow: "0 0 25px rgba(0,191,255,0.45)",   label: "Peak cognitive performance. Leverage this window." },
-  FOCUSED:  { color: "#00FF88", bg: "rgba(0,255,136,0.09)",  glow: "0 0 25px rgba(0,255,136,0.35)",   label: "Solid operational state. Deep work protocol recommended." },
-  DRAINED:  { color: "#FFB800", bg: "rgba(255,184,0,0.09)",  glow: "0 0 25px rgba(255,184,0,0.35)",   label: "Energy reserves low. Prioritise recovery and easy wins." },
-  CRITICAL: { color: "#FF4444", bg: "rgba(255,68,68,0.09)",  glow: "0 0 25px rgba(255,68,68,0.35)",   label: "System alert. Rest is non-negotiable. Disengage from strain." },
+const moodStyles: Record<MoodState, { color: string; bg: string; glow: string; label: string; icon: string }> = {
+  OPTIMAL:  { color: "#00BFFF", bg: "rgba(0,191,255,0.09)",  glow: "0 0 25px rgba(0,191,255,0.45)",   label: "Peak cognitive performance. Leverage this window.", icon: "⚡" },
+  FOCUSED:  { color: "#00FF88", bg: "rgba(0,255,136,0.09)",  glow: "0 0 25px rgba(0,255,136,0.35)",   label: "Solid operational state. Deep work protocol recommended.", icon: "◎" },
+  DRAINED:  { color: "#FFB800", bg: "rgba(255,184,0,0.09)",  glow: "0 0 25px rgba(255,184,0,0.35)",   label: "Energy reserves low. Prioritise recovery and easy wins.", icon: "▽" },
+  CRITICAL: { color: "#FF4444", bg: "rgba(255,68,68,0.09)",  glow: "0 0 25px rgba(255,68,68,0.35)",   label: "System alert. Rest is non-negotiable. Disengage from strain.", icon: "⬡" },
 };
 
 function alfredInsight(score: number): string {
@@ -156,13 +156,28 @@ function Sparkline({ data }: { data: number[] }) {
   const ys = data.map((v) => padY + ((10 - v) / 9) * (H - padY * 2));
   const points = xs.map((x, i) => `${x},${ys[i]}`).join(" ");
 
+  // Area fill polygon
+  const areaPoints = [
+    `${xs[0]},${H}`,
+    ...xs.map((x, i) => `${x},${ys[i]}`),
+    `${xs[xs.length - 1]},${H}`,
+  ].join(" ");
+
   return (
     <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", maxWidth: W, height: H }}>
+      <defs>
+        <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#00BFFF" stopOpacity="0.25" />
+          <stop offset="100%" stopColor="#00BFFF" stopOpacity="0.02" />
+        </linearGradient>
+      </defs>
       {/* Grid lines */}
       {[0.25, 0.5, 0.75].map((f, i) => (
         <line key={i} x1={padX} x2={W - padX} y1={padY + f * (H - padY * 2)} y2={padY + f * (H - padY * 2)}
           stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
       ))}
+      {/* Area fill */}
+      <polygon points={areaPoints} fill="url(#sparkGrad)" />
       {/* Sparkline */}
       <motion.polyline
         points={points}
@@ -178,8 +193,8 @@ function Sparkline({ data }: { data: number[] }) {
       />
       {/* Dots */}
       {xs.map((x, i) => (
-        <circle key={i} cx={x} cy={ys[i]} r={3} fill="#00BFFF"
-          style={{ filter: "drop-shadow(0 0 4px #00BFFF)" }} />
+        <circle key={i} cx={x} cy={ys[i]} r={3.5} fill="#00BFFF"
+          style={{ filter: "drop-shadow(0 0 5px #00BFFF)" }} />
       ))}
     </svg>
   );
@@ -343,23 +358,46 @@ export default function MoodTracker() {
               </span>
             </motion.div>
 
-            {/* Slider */}
-            <div className="w-full max-w-xs mb-6">
-              <input
-                type="range" min={1} max={10} value={score}
-                onChange={(e) => { setScore(Number(e.target.value)); setLogged(false); setShowInsight(false); }}
-                className="w-full"
-                style={{ accentColor: style.color, cursor: "pointer" }}
-              />
-              <div className="flex justify-between mt-1">
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
-                  <span key={n} style={{
-                    fontFamily: "'Share Tech Mono', monospace", fontSize: "0.55rem",
-                    color: n === score ? style.color : "rgba(255,255,255,0.15)",
-                    transition: "color 0.2s",
-                  }}>{n}</span>
-                ))}
+            {/* Score buttons — 10 interactive keys */}
+            <div className="w-full max-w-sm mb-6">
+              <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.5rem", letterSpacing: "0.25em", color: "rgba(0,191,255,0.4)", marginBottom: "10px", textAlign: "center" }}>
+                SELECT ENERGY LEVEL (1–10)
+              </p>
+              <div className="flex gap-1.5 justify-center">
+                {[1,2,3,4,5,6,7,8,9,10].map((n) => {
+                  const nc = n >= 8 ? "#00BFFF" : n >= 6 ? "#00FF88" : n >= 4 ? "#FFB800" : "#FF4444";
+                  const active = score === n;
+                  return (
+                    <motion.button
+                      key={n}
+                      whileHover={{ scale: 1.15, y: -3 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => { setScore(n); setLogged(false); setShowInsight(false); }}
+                      style={{
+                        width: "30px", height: "44px",
+                        background: active ? `${nc}22` : "rgba(255,255,255,0.03)",
+                        border: active ? `1px solid ${nc}` : "1px solid rgba(255,255,255,0.07)",
+                        color: active ? nc : "rgba(150,180,200,0.35)",
+                        fontFamily: "'Orbitron', monospace",
+                        fontSize: "0.65rem",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        boxShadow: active ? `0 0 16px ${nc}55, 0 -4px 8px ${nc}22` : "none",
+                        transition: "all 0.2s ease",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRadius: "2px 2px 0 0",
+                        transform: active ? "translateY(-4px)" : "none",
+                      }}
+                    >
+                      {n}
+                    </motion.button>
+                  );
+                })}
               </div>
+              {/* Piano key base */}
+              <div style={{ height: "4px", background: "linear-gradient(90deg, rgba(0,191,255,0.1), rgba(0,191,255,0.3), rgba(0,191,255,0.1))", marginTop: "0" }} />
             </div>
 
             {/* Log Button */}
@@ -450,7 +488,7 @@ export default function MoodTracker() {
                 </AnimatePresence>
               </div>
 
-              {/* Current score breakdown */}
+              {/* Current score breakdown with icon */}
               <div className="grid grid-cols-2 gap-3 mt-4">
                 {(["OPTIMAL", "FOCUSED", "DRAINED", "CRITICAL"] as MoodState[]).map((s) => {
                   const ms = moodStyles[s];
@@ -462,8 +500,7 @@ export default function MoodTracker() {
                         background: active ? ms.bg : "transparent",
                         transition: "all 0.3s",
                       }}>
-                      <span className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                        style={{ background: ms.color, opacity: active ? 1 : 0.25 }} />
+                      <span style={{ fontSize: "0.9rem", color: ms.color, opacity: active ? 1 : 0.25 }}>{ms.icon}</span>
                       <span style={{
                         fontFamily: "'Share Tech Mono', monospace", fontSize: "0.55rem",
                         letterSpacing: "0.12em", color: active ? ms.color : "rgba(255,255,255,0.2)",

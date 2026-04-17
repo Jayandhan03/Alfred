@@ -388,8 +388,21 @@ export default function FocusTimer() {
               ))}
             </div>
 
-            {/* Circular timer */}
+            {/* Circular timer with ambient glow */}
             <div style={{ position: "relative" }}>
+              {/* Ambient pulsing glow when RUNNING */}
+              {status === "RUNNING" && (
+                <motion.div
+                  animate={{ opacity: [0.4, 0.8, 0.4], scale: [0.9, 1.1, 0.9] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                  style={{
+                    position: "absolute", inset: "-20px",
+                    borderRadius: "50%",
+                    background: `radial-gradient(circle, ${cfg.color}18 0%, transparent 70%)`,
+                    pointerEvents: "none",
+                  }}
+                />
+              )}
               <CircularProgress progress={progress} color={cfg.color} timeStr={fmt(secondsLeft)} mode={mode} status={status} />
 
               {/* Complete flash */}
@@ -524,21 +537,33 @@ export default function FocusTimer() {
 
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { label: "TODAY", value: stats.todaySessions, unit: "sessions" },
-                  { label: "STREAK", value: stats.streak, unit: "days" },
-                  { label: "TOTAL SESSIONS", value: stats.totalSessions, unit: "completed" },
-                  { label: "FOCUS TIME", value: stats.totalMinutes, unit: "minutes" },
-                ].map(({ label, value, unit }) => (
-                  <div key={label} className="p-3" style={{
-                    border: "1px solid rgba(0,191,255,0.1)",
-                    background: "rgba(0,191,255,0.03)",
-                  }}>
-                    <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.5rem", letterSpacing: "0.2em", color: "rgba(0,191,255,0.45)", marginBottom: "6px" }}>{label}</p>
-                    <p style={{ fontFamily: "'Orbitron', monospace", fontSize: "1.5rem", fontWeight: 800, color: "#00BFFF", filter: "drop-shadow(0 0 8px rgba(0,191,255,0.6))", lineHeight: 1 }}>
+                  { label: "TODAY", value: stats.todaySessions, unit: "sessions", color: "#00BFFF", icon: "◎" },
+                  { label: "STREAK", value: stats.streak, unit: "days", color: "#FFB800", icon: "★" },
+                  { label: "TOTAL SESSIONS", value: stats.totalSessions, unit: "completed", color: "#00FF88", icon: "▣" },
+                  { label: "FOCUS TIME", value: stats.totalMinutes, unit: "minutes", color: "#BF7FFF", icon: "⚡" },
+                ].map(({ label, value, unit, color, icon }) => (
+                  <motion.div key={label}
+                    whileHover={{ scale: 1.03, boxShadow: `0 0 20px ${color}18` }}
+                    className="p-4"
+                    style={{
+                      border: `1px solid ${color}22`,
+                      background: `${color}06`,
+                      position: "relative",
+                      overflow: "hidden",
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "1px", background: `linear-gradient(90deg, transparent, ${color}88, transparent)` }} />
+                    <div style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: "2px", background: `linear-gradient(to bottom, ${color}, transparent)` }} />
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "6px" }}>
+                      <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.48rem", letterSpacing: "0.2em", color: `${color}77` }}>{label}</p>
+                      <span style={{ color: `${color}66`, fontSize: "0.75rem" }}>{icon}</span>
+                    </div>
+                    <p style={{ fontFamily: "'Orbitron', monospace", fontSize: "1.7rem", fontWeight: 900, color, filter: `drop-shadow(0 0 10px ${color}88)`, lineHeight: 1 }}>
                       {value}
                     </p>
-                    <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.5rem", color: "rgba(255,255,255,0.2)", letterSpacing: "0.1em", marginTop: "3px" }}>{unit}</p>
-                  </div>
+                    <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "0.48rem", color: "rgba(255,255,255,0.18)", letterSpacing: "0.1em", marginTop: "3px" }}>{unit}</p>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>

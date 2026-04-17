@@ -341,70 +341,83 @@ export default function HabitTrackerPage() {
               value: `${completionRate}%`,
               sub: `${totalCompleted}/${habits.length} habits`,
               color: "#00BFFF",
+              icon: "◎",
             },
             {
               label: "BEST ACTIVE STREAK",
               value: `${longestActiveStreak}d`,
               sub: "consecutive days",
               color: "#FFB800",
+              icon: longestActiveStreak >= 7 ? "🔥" : "★",
             },
             {
               label: "TOTAL HABITS",
               value: habits.length,
               sub: "being tracked",
               color: "#BF7FFF",
+              icon: "◆",
             },
           ].map((stat) => (
-            <div
+            <motion.div
               key={stat.label}
-              className="relative p-5 flex flex-col"
+              whileHover={{ scale: 1.02, boxShadow: `0 0 30px ${stat.color}18` }}
+              className="relative p-6 flex flex-col"
               style={{
-                background: "rgba(13,17,23,0.9)",
-                border: `1px solid ${stat.color}22`,
-                backdropFilter: "blur(12px)",
+                background: "rgba(10,14,20,0.95)",
+                border: `1px solid ${stat.color}20`,
+                backdropFilter: "blur(16px)",
+                overflow: "hidden",
+                transition: "all 0.3s ease",
               }}
             >
               <div
                 className="absolute top-0 left-0 right-0 h-px"
                 style={{
                   background: `linear-gradient(90deg, transparent, ${stat.color}, transparent)`,
-                  opacity: 0.4,
+                  opacity: 0.55,
                 }}
               />
+              {/* Left accent */}
+              <div style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: "2px", background: `linear-gradient(to bottom, ${stat.color}, transparent)` }} />
               <p
                 style={{
                   fontFamily: "'Share Tech Mono', monospace",
-                  fontSize: "0.55rem",
+                  fontSize: "0.52rem",
                   letterSpacing: "0.25em",
-                  color: `${stat.color}99`,
-                  marginBottom: "6px",
+                  color: `${stat.color}88`,
+                  marginBottom: "8px",
                 }}
               >
                 {stat.label}
               </p>
-              <p
-                style={{
-                  fontFamily: "'Orbitron', monospace",
-                  fontSize: "1.8rem",
-                  fontWeight: 800,
-                  color: stat.color,
-                  filter: `drop-shadow(0 0 8px ${stat.color}66)`,
-                  lineHeight: 1.1,
-                }}
-              >
-                {stat.value}
-              </p>
+              <div className="flex items-center gap-3">
+                <p
+                  style={{
+                    fontFamily: "'Orbitron', monospace",
+                    fontSize: "2rem",
+                    fontWeight: 900,
+                    color: stat.color,
+                    filter: `drop-shadow(0 0 12px ${stat.color}88)`,
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {stat.value}
+                </p>
+                <span style={{ fontSize: "1.2rem", opacity: 0.7 }}>{stat.icon}</span>
+              </div>
               <p
                 style={{
                   fontFamily: "'Share Tech Mono', monospace",
-                  fontSize: "0.6rem",
-                  color: "rgba(150,180,200,0.5)",
+                  fontSize: "0.55rem",
+                  color: "rgba(150,180,200,0.45)",
                   marginTop: "4px",
                 }}
               >
                 {stat.sub}
               </p>
-            </div>
+              {/* Bottom corner accent */}
+              <div style={{ position: "absolute", bottom: 0, right: 0, width: 14, height: 14, borderBottom: `1px solid ${stat.color}44`, borderRight: `1px solid ${stat.color}44` }} />
+            </motion.div>
           ))}
         </motion.div>
 
@@ -454,16 +467,26 @@ export default function HabitTrackerPage() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 30 }}
                   transition={{ duration: 0.4, delay: i * 0.07 }}
+                  whileHover={{ x: 2, boxShadow: doneToday ? `0 0 20px ${color}22` : "0 0 12px rgba(0,191,255,0.05)" }}
                   className="relative flex items-center justify-between p-5 group"
                   style={{
-                    background: doneToday ? `${color}0A` : "rgba(13,17,23,0.9)",
-                    border: `1px solid ${doneToday ? color + "44" : "rgba(0,191,255,0.1)"}`,
-                    backdropFilter: "blur(12px)",
+                    background: doneToday ? `${color}0D` : "rgba(10,14,20,0.92)",
+                    border: `1px solid ${doneToday ? color + "44" : "rgba(0,191,255,0.08)"}`,
+                    backdropFilter: "blur(16px)",
                     transition: "all 0.3s ease",
                     cursor: "pointer",
+                    overflow: "hidden",
                   }}
                   onClick={() => setSelectedHabit(habit)}
                 >
+                  {/* Colored left strip */}
+                  <div style={{
+                    position: "absolute", top: 0, left: 0, bottom: 0, width: "3px",
+                    background: doneToday ? `linear-gradient(to bottom, ${color}, ${color}66)` : `linear-gradient(to bottom, ${color}33, transparent)`,
+                    boxShadow: doneToday ? `0 0 10px ${color}88` : "none",
+                    transition: "all 0.4s ease",
+                  }} />
+
                   {doneToday && (
                     <div
                       className="absolute top-0 left-0 right-0 h-px"
@@ -564,26 +587,27 @@ export default function HabitTrackerPage() {
                       </p>
                     </div>
 
-                    {/* Check button */}
+                    {/* Check button with ripple */}
                     <motion.button
-                      whileTap={{ scale: 0.88 }}
+                      whileTap={{ scale: 0.82 }}
+                      whileHover={{ scale: 1.1 }}
                       onClick={() => toggleHabitToday(habit.id)}
                       style={{
-                        width: "44px",
-                        height: "44px",
+                        width: "46px",
+                        height: "46px",
                         borderRadius: "50%",
-                        background: doneToday ? `${color}25` : "rgba(13,17,23,0.9)",
-                        border: `2px solid ${doneToday ? color : "rgba(150,180,200,0.2)"}`,
+                        background: doneToday ? `${color}22` : "rgba(10,14,20,0.9)",
+                        border: `2px solid ${doneToday ? color : "rgba(150,180,200,0.18)"}`,
                         cursor: "pointer",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        fontSize: "1.1rem",
+                        fontSize: "1.2rem",
                         transition: "all 0.3s ease",
-                        boxShadow: doneToday
-                          ? `0 0 16px ${color}55`
-                          : "none",
-                        color: doneToday ? color : "rgba(150,180,200,0.3)",
+                        boxShadow: doneToday ? `0 0 20px ${color}55, 0 0 40px ${color}22` : "none",
+                        color: doneToday ? color : "rgba(150,180,200,0.25)",
+                        position: "relative",
+                        overflow: "hidden",
                       }}
                     >
                       {doneToday ? "✓" : "○"}
@@ -676,36 +700,43 @@ export default function HabitTrackerPage() {
                   habits.length > 0 ? completedCount / habits.length : 0;
                 const isToday = dateStr === today;
                 const opacity =
-                  ratio === 0 ? 0.06 : 0.15 + ratio * 0.85;
+                  ratio === 0 ? 0.05 : 0.12 + ratio * 0.88;
                 const day = new Date(dateStr + "T00:00:00").getDate();
 
                 return (
-                  <div
+                  <motion.div
                     key={dateStr}
-                    title={`${dateStr}: ${completedCount}/${habits.length} habits`}
+                    whileHover={{ scale: 1.2, zIndex: 10 }}
+                    title={`${dateStr}: ${completedCount}/${habits.length} habits done`}
                     style={{
-                      width: "28px",
-                      height: "28px",
-                      background: `rgba(191,127,255,${opacity})`,
+                      width: "32px",
+                      height: "32px",
+                      background: ratio === 0
+                        ? "rgba(191,127,255,0.05)"
+                        : `rgba(191,127,255,${opacity})`,
                       border: isToday
                         ? "1.5px solid #BF7FFF"
+                        : ratio > 0.5
+                        ? "1px solid rgba(191,127,255,0.3)"
                         : "1px solid rgba(191,127,255,0.1)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      boxShadow: isToday ? "0 0 8px rgba(191,127,255,0.4)" : "none",
+                      boxShadow: isToday ? "0 0 10px rgba(191,127,255,0.5)" : ratio > 0.7 ? "0 0 6px rgba(191,127,255,0.3)" : "none",
+                      cursor: "default",
+                      transition: "all 0.2s ease",
                     }}
                   >
                     <span
                       style={{
                         fontFamily: "'Share Tech Mono', monospace",
-                        fontSize: "0.5rem",
-                        color: ratio > 0.5 ? "rgba(255,255,255,0.8)" : "rgba(150,180,200,0.4)",
+                        fontSize: "0.48rem",
+                        color: ratio > 0.5 ? "rgba(255,255,255,0.85)" : "rgba(150,180,200,0.4)",
                       }}
                     >
                       {day}
                     </span>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>

@@ -237,39 +237,51 @@ export default function GoalTrackerPage() {
           </motion.button>
         </div>
 
-        {/* Stats strip */}
+        {/* Stats strip — glowing metric orbs */}
         <div
           className="grid grid-cols-3"
-          style={{ borderBottom: "1px solid rgba(0,191,255,0.08)" }}
+          style={{ borderBottom: "1px solid rgba(0,191,255,0.07)", background: "rgba(0,0,0,0.35)" }}
         >
           {[
-            { label: "TOTAL GOALS", value: totalGoals },
-            { label: "AVG PROGRESS", value: `${avgProgress}%` },
-            { label: "COMPLETED", value: completedGoals },
-          ].map((s) => (
+            { label: "TOTAL GOALS", value: totalGoals, icon: "▣", color: "#00BFFF", glow: "rgba(0,191,255,0.4)" },
+            { label: "AVG PROGRESS", value: `${avgProgress}%`, icon: "◎", color: "#FFB800", glow: "rgba(255,184,0,0.4)" },
+            { label: "COMPLETED", value: completedGoals, icon: "✓", color: "#00FF88", glow: "rgba(0,255,136,0.4)" },
+          ].map((s, i) => (
             <div
               key={s.label}
-              className="py-5 text-center"
-              style={{ borderRight: "1px solid rgba(0,191,255,0.08)" }}
+              className="py-6 text-center relative"
+              style={{ borderRight: i < 2 ? "1px solid rgba(0,191,255,0.06)" : "none" }}
             >
+              <div style={{ position: "absolute", top: 0, left: "20%", right: "20%", height: "1px", background: `linear-gradient(90deg, transparent, ${s.color}66, transparent)` }} />
               <p
                 style={{
                   fontFamily: "'Orbitron', monospace",
-                  fontSize: "1.8rem",
-                  fontWeight: 800,
-                  color: "#00BFFF",
-                  filter: "drop-shadow(0 0 12px rgba(0,191,255,0.5))",
+                  fontSize: "2.4rem",
+                  fontWeight: 900,
+                  color: s.color,
+                  filter: `drop-shadow(0 0 18px ${s.glow}) drop-shadow(0 0 6px ${s.glow})`,
+                  lineHeight: 1,
                 }}
               >
                 {s.value}
               </p>
               <p
                 style={{
+                  fontFamily: "'Orbitron', monospace",
+                  fontSize: "0.95rem",
+                  color: `${s.color}55`,
+                  marginBottom: "4px",
+                  marginTop: "2px",
+                }}
+              >
+                {s.icon}
+              </p>
+              <p
+                style={{
                   fontFamily: "'Share Tech Mono', monospace",
-                  fontSize: "0.55rem",
-                  letterSpacing: "0.25em",
-                  color: "rgba(0,191,255,0.45)",
-                  marginTop: 4,
+                  fontSize: "0.5rem",
+                  letterSpacing: "0.28em",
+                  color: "rgba(0,191,255,0.38)",
                 }}
               >
                 {s.label}
@@ -439,14 +451,19 @@ export default function GoalTrackerPage() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.06 }}
+                    whileHover={{ boxShadow: `0 0 24px ${meta.glow}22` }}
                     style={{
-                      background: "rgba(13,17,23,0.9)",
-                      border: `1px solid ${isExpanded ? meta.color + "55" : "rgba(0,191,255,0.1)"}`,
-                      backdropFilter: "blur(16px)",
-                      transition: "border-color 0.35s ease",
-                      boxShadow: isExpanded ? `0 0 30px ${meta.glow}30` : "none",
+                      background: "rgba(10,14,20,0.92)",
+                      border: `1px solid ${isExpanded ? meta.color + "55" : "rgba(0,191,255,0.08)"}`,
+                      backdropFilter: "blur(20px)",
+                      transition: "all 0.35s ease",
+                      boxShadow: isExpanded ? `0 0 40px ${meta.glow}25, inset 0 0 40px ${meta.glow}05` : "none",
+                      position: "relative",
+                      overflow: "hidden",
                     }}
                   >
+                    {/* Colored left border strip */}
+                    <div style={{ position: "absolute", top: 0, left: 0, bottom: 0, width: "3px", background: `linear-gradient(to bottom, ${meta.color}, ${meta.color}44)`, boxShadow: `0 0 8px ${meta.glow}` }} />
                     {/* Goal header */}
                     <div
                       className="flex items-center gap-5 p-6 cursor-pointer"
@@ -514,22 +531,33 @@ export default function GoalTrackerPage() {
                         <div style={{ marginBottom: 4 }}>
                           <div
                             style={{
-                              height: "4px",
-                              background: "rgba(255,255,255,0.05)",
+                              height: "5px",
+                              background: "rgba(255,255,255,0.04)",
                               borderRadius: 8,
                               overflow: "hidden",
+                              position: "relative",
                             }}
                           >
                             <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: `${goal.progress}%` }}
-                              transition={{ duration: 0.8, ease: "easeOut" }}
+                              transition={{ duration: 0.9, ease: "easeOut" }}
                               style={{
                                 height: "100%",
-                                background: `linear-gradient(90deg, ${meta.color}, ${meta.color}99)`,
-                                boxShadow: `0 0 8px ${meta.glow}`,
+                                background: `linear-gradient(90deg, ${meta.color}cc, ${meta.color})`,
+                                boxShadow: `0 0 12px ${meta.glow}`,
+                                position: "relative",
+                                overflow: "hidden",
                               }}
-                            />
+                            >
+                              {/* Shimmer */}
+                              <div style={{
+                                position: "absolute", inset: 0,
+                                background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%)",
+                                backgroundSize: "200% 100%",
+                                animation: "shimmer 2s linear infinite",
+                              }} />
+                            </motion.div>
                           </div>
                           <div className="flex justify-between mt-1">
                             <span
