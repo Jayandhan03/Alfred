@@ -7,10 +7,9 @@ import { logout } from "@/lib/auth";
 
 const navLinks = [
   { href: "#hero", label: "HOME" },
-  { href: "#status", label: "STATUS" },
-  { href: "#mood", label: "MOOD" },
-  { href: "#features", label: "FEATURES" },
-  { href: "#terminal", label: "TERMINAL" },
+  { href: "/status", label: "STATUS" },
+  { href: "/features", label: "FEATURES" },
+  { href: "/terminal", label: "TERMINAL" },
 ];
 
 export default function Navbar() {
@@ -74,6 +73,14 @@ export default function Navbar() {
             <motion.a
               key={link.href}
               href={link.href}
+              onClick={
+                link.href.startsWith("#")
+                  ? undefined
+                  : (e) => {
+                      e.preventDefault();
+                      router.push(link.href);
+                    }
+              }
               whileHover={{ color: "#00BFFF" }}
               style={{
                 fontFamily: "'Share Tech Mono', monospace",
@@ -154,7 +161,13 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => {
+                    setMobileOpen(false);
+                    if (!link.href.startsWith("#")) {
+                      e.preventDefault();
+                      router.push(link.href);
+                    }
+                  }}
                   style={{
                     fontFamily: "'Share Tech Mono', monospace",
                     fontSize: "0.7rem",

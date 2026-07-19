@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function HeroSection() {
+  const router = useRouter();
   return (
     <section
       id="hero"
@@ -135,7 +136,11 @@ export default function HeroSection() {
           <motion.a
             whileHover={{ scale: 1.04, boxShadow: "0 0 30px rgba(0, 191, 255, 0.6), 0 0 60px rgba(0, 191, 255, 0.3)" }}
             whileTap={{ scale: 0.97 }}
-            href="#terminal"
+            href="/terminal"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/terminal");
+            }}
             className="relative px-8 py-4 cursor-pointer group overflow-hidden"
             style={{
               fontFamily: "'Orbitron', monospace",
@@ -169,7 +174,11 @@ export default function HeroSection() {
               boxShadow: "0 0 20px rgba(0, 191, 255, 0.3), inset 0 0 20px rgba(0, 191, 255, 0.05)",
             }}
             whileTap={{ scale: 0.97 }}
-            href="#terminal"
+            href="/terminal"
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/terminal");
+            }}
             className="px-8 py-4 cursor-pointer"
             style={{
               fontFamily: "'Orbitron', monospace",

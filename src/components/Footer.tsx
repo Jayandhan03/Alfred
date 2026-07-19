@@ -161,7 +161,7 @@ export default function Footer() {
               </motion.a>
               <motion.a
                 whileHover={{ x: 4, color: "#00BFFF" }}
-                href="#terminal"
+                href="/terminal"
                 className="flex items-center gap-3 group"
                 style={{
                   fontFamily: "'Rajdhani', sans-serif",
